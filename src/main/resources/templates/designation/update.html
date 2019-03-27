@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <title>Sun-Shine Farm Inc.</title>
+    <style type="text/css">
+        .success {
+            color: greenyellow;
+            font-weight: bold;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="custom-content">
+    <div class="card, col-sm-12">
+        <div class="card-header">
+            Add <strong>Designation</strong>
+        </div>
+        <div class="card-body card-block">
+            <form action="#" method="post" class="form-horizontal" th:object="${designation}"
+                  th:action="@{/designation/update/} + ${id}">
+                <div class="row form-group">
+                    <div class="col-12 col-md-12">
+                        <input type="hidden" th:field="*{id}" th:value="${designation.id}"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Designation Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="designationName" name="designationName"
+                                                        placeholder="Enter Designation name" class="form-control"
+                                                        th:field="*{designationName}" required></div>
+                    <div class="col-12 col-md-3">
+                        <span th:if="${#fields.hasErrors('designationName')}" th:errors="*{designationName}"></span>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <title>Sun-Shine Farm Inc.</title>
+    <style type="text/css">
+        .success {
+            color: greenyellow;
+            font-weight: bold;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="custom-content">
+    <div class="card, col-sm-12">
+        <div class="card-header">
+            User <strong>Profile</strong>
+        </div>
+        <div class="card-body card-block">
+            <!--<span th:text="${existuser}"></span>-->
+            <form method="get" class="form-horizontal" th:object="${user}" th:action="@{/profile}">
+                <div class="row form-group">
+                    <div class="col-12 col-md-12">
+                        <h3>Profile of <i><b th:text="${user.name}"></b></i></h3>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"></div>
+                    <div class="col-12 col-md-9">
+                        <h5>
+                            <img th:src="@{${user.filePath}}" th:alt="${user.fileName}" class="mb-xl-auto img-fluid"/>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label"><h5><b>User Name</b></h5></label></div>
+                    <div class="col-12 col-md-9">
+                        <h5>
+                            <span th:text="${user.userName}"></span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label"><h5><b>Email</b></h5></label></div>
+                    <div class="col-12 col-md-9">
+                        <h5>
+                            <span th:text="${user.email}"></span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label"><h5><b>Mobile Number</b></h5></label></div>
+                    <div class="col-12 col-md-9">
+                        <h5>
+                            <span th:text="${user.mobile}"></span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label"><h5><b>Name</b></h5></label></div>
+                    <div class="col-12 col-md-9">
+                        <h5>
+                            <span th:text="${user.name}"></span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label"><h5><b>Registration Date</b></h5></label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <h5>
+                            <span th:text="${user.registrationDate}"></span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label"><h5><b>Role</b></h5></label></div>
+                    <div class="col-12 col-md-9">
+                        <h5>
+                            <span th:each="r : ${user.roles}">
+                                <span th:text="${r.roleName} + ' '"/>
+                            </span>
+                        </h5>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

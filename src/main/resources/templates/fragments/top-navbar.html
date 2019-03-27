@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header id="header" class="header" th:fragment="top-navbar">
+
+    <div class="header-menu">
+        <div class="col-sm-6">
+            <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+        </div>
+        <div class="col-sm-6">
+            <div class="user-area dropdown float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="user-avatar rounded-circle" src="/images/admin.JPG" th:src="@{/images/admin.JPG}"
+                         alt="User Avatar">
+                </a>
+
+                <div class="user-menu dropdown-menu">
+                    <a class="nav-link" th:href="@{/profile}"><i class="fa fa-user"></i>
+                        User Profile
+                    </a>
+                    <!--<a class="nav-link" th:href="@{/change-password}"><i class="fa fa-user"></i>-->
+                        <!--Change Password-->
+                    <!--</a>-->
+                    <a class="nav-link" th:href="@{/logout}"><i class="fa fa-power-off"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+</body>
+</html>

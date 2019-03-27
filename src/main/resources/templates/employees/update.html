@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <title>Sun-Shine Farm Inc.</title>
+    <style type="text/css">
+        .success {
+            color: greenyellow;
+            font-weight: bold;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="custom-content">
+    <div class="card, col-sm-12">
+        <div class="card-header">
+            Edit <strong>Employee</strong>
+        </div>
+        <div class="card-body card-block">
+            <form action="#" method="post" class="form-horizontal" th:object="${employees}" th:action="@{/employees/update/} + ${id}">
+                <div class="row form-group">
+                    <div class="col-12 col-md-12">
+                        <input type="hidden" th:field="*{id}" th:value="${employees.id}"/>
+                        <input type="hidden" th:field="*{startingDate}" th:value="${employees.startingDate}"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="name" name="name"
+                                                        placeholder="Enter Employee name" class="form-control"
+                                                        th:field="*{name}" th:value="${employees.name}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Mobile</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="mobile" name="mobile" placeholder="Enter Mobile number"
+                                                        class="form-control" th:field="*{mobile}" th:value="${employees.mobile}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Monthly Salary</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="monthlySalary" name="monthlySalary"
+                                                        placeholder="Enter monthlySalary of employee" class="form-control"
+                                                        th:field="*{monthlySalary}" th:value="${employees.name}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('monthlySalary')}" th:errors="*{monthlySalary}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Designation</label></div>
+                    <div class="col-12 col-md-6">
+                        <select data-placeholder="Choose a Designation" class="standardSelect" tabindex="1" th:field="*{designation}">
+                            <option th:each="tyyy : ${designationlist}" th:value="${tyyy.id}">
+                                <span th:text="${tyyy.designationName}"></span>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('designation')}" th:errors="*{designation}"></span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Update
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>

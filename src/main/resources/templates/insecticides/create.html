@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <title>Sun-Shine Farm Inc.</title>
+    <style type="text/css">
+        .success {
+            color: greenyellow;
+            font-weight: bold;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="custom-content">
+    <div class="card, col-sm-12">
+        <div class="card-header">
+            Add <strong>Insecticides</strong>
+        </div>
+        <div class="card-body card-block">
+            <span th:class="success" th:text="${successinsecticides}"></span>
+            <form method="post" class="form-horizontal" th:object="${insecticides}" th:action="@{/insecticides/create}">
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="name" name="name"
+                                                        placeholder="Enter Insecticides name" class="form-control"
+                                                        th:field="*{name}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Product Code</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="productCode" name="productCode" placeholder="Enter Insecticides Product Code"
+                                                        class="form-control" th:field="*{productCode}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('productCode')}" th:errors="*{productCode}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Quantity</label></div>
+                    <div class="col-12 col-md-6"><input type="number" id="quantity" name="quantity"
+                                                        placeholder="Enter Insecticides Quantity" class="form-control"
+                                                        th:field="*{quantity}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Purchase Price</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="purchasePrice" name="purchasePrice" placeholder="Enter Insecticides Purchase Price"
+                                                        class="form-control" th:field="*{purchasePrice}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('purchasePrice')}" th:errors="*{purchasePrice}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Person Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="personName" name="personName" placeholder="Enter person's name, responsible for purchasing this Insecticides"
+                                                        class="form-control" th:field="*{personName}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('personName')}" th:errors="*{personName}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Crops</label></div>
+                    <div class="col-12 col-md-6">
+                        <select data-placeholder="Select crops" class="standardSelect" th:field="*{crops}" multiple>
+                            <option th:each="tyyy : ${croplist}" th:value="${tyyy.id}">
+                                <span th:text="${tyyy.name}"></span>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('crops')}" th:errors="*{crops}"></span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Create
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>

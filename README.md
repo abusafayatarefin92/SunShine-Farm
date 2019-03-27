@@ -1,1 +1,3 @@
 # SunShine-Farm
+Description: It is a farm management system software. In here user can create his/her own account, by email verification. User can only see information of the farm. Admin can perform CRUD operation in all list. The main purpose of this software is to help the farm management to record the activities in the farm.  
+Technology Used: Java, Hibernate, Spring-Boot, Spring-Data-Jpa, Spring-MVC, Spring-Security, Spring-ThymeLeaf, MySQL, HTML, CSS, Bootstrap, JQuery, JavaScript.

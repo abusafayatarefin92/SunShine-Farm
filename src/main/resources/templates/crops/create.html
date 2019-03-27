@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <title>Sun-Shine Farm Inc.</title>
+    <style type="text/css">
+        .success {
+            color: greenyellow;
+            font-weight: bold;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="custom-content">
+    <div class="card, col-sm-12">
+        <div class="card-header">
+            Add <strong>Crops</strong>
+        </div>
+        <div class="card-body card-block">
+            <span th:class="success" th:text="${successcrops}"></span>
+            <form action="" method="post" class="form-horizontal" th:object="${crops}"
+                  th:action="@{/crops/create}">
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Crops Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="name" name="name"
+                                                        placeholder="Enter Crops name" class="form-control"
+                                                        th:field="*{name}" required></div>
+                    <div class="col-12 col-md-3">
+                        <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Duration</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="duration" name="duration"
+                                                        placeholder="Enter Crops duration" class="form-control"
+                                                        th:field="*{duration}" required></div>
+                    <div class="col-12 col-md-3">
+                        <td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></td>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Product Code</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="productCode" name="productCode"
+                                                        placeholder="Enter Crops Product Code" class="form-control"
+                                                        th:field="*{productCode}" required></div>
+                    <div class="col-12 col-md-3">
+                        <td th:if="${#fields.hasErrors('productCode')}" th:errors="*{productCode}"></td>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Quantity</label></div>
+                    <div class="col-12 col-md-6"><input type="number" id="quantity" name="quantity"
+                                                        placeholder="Enter Crops Quantity" class="form-control"
+                                                        th:field="*{quantity}" required></div>
+                    <div class="col-12 col-md-3">
+                        <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></td>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Per Unit Selling Price</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="perUnitSellingPrice" name="perUnitSellingPrice"
+                                                        placeholder="Enter Crops Per Unit Selling Price" class="form-control"
+                                                        th:field="*{perUnitSellingPrice}" required></div>
+                    <div class="col-12 col-md-3">
+                        <td th:if="${#fields.hasErrors('perUnitSellingPrice')}" th:errors="*{perUnitSellingPrice}"></td>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

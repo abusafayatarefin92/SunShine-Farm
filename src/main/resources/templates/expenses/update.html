@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <title>Sun-Shine Farm Inc.</title>
+    <style type="text/css">
+        .success {
+            color: greenyellow;
+            font-weight: bold;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="custom-content">
+    <div class="card, col-sm-12">
+        <div class="card-header">
+            Edit <strong>Expenses</strong>
+        </div>
+        <div class="card-body card-block">
+            <form action="#" method="post" class="form-horizontal" th:object="${obj}" th:action="@{/expenses/update/} + ${id}">
+                <div class="row form-group">
+                    <div class="col col-md-12">
+                        <input type="hidden" th:field="*{id}" th:value="${obj.id}"/>
+                        <input type="hidden" th:field="*{date}" th:value="${obj.date}"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Expenses Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="expenseName" name="expenseName"
+                                                        placeholder="Enter Expense name" class="form-control"
+                                                        th:field="*{expenseName}" th:value="${obj.expenseName}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('expenseName')}" th:errors="*{expenseName}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Amount</label></div>
+                    <div class="col-12 col-md-6"><input type="number" id="amountName" name="amountName"
+                                                        placeholder="Enter Expense Amount" class="form-control"
+                                                        th:field="*{amount}" th:value="${obj.amount}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Person Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="personName" name="personName"
+                                                        placeholder="Enter Person name responsible for this expense"
+                                                        class="form-control" th:field="*{personName}" th:value="${obj.personName}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('personName')}" th:errors="*{personName}"></span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
