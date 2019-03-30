@@ -126,7 +126,7 @@ public class UserController {
 //        if(user.getRoles().equals()){
             modelAndView.addObject("userlist", this.userRepo.findAll());
 //        }else {
-//            modelAndView.addObject("userbyusername", this.userRepo.findAllByUserName(user.getUserName()));
+//            modelAndView.addObject("userlist", this.userRepo.findAllByUserName(user.getUserName()));
 //        }
         modelAndView.setViewName("user/list");
         return modelAndView;

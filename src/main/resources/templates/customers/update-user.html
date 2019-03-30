@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <title>Sun-Shine Farm Inc.</title>
+    <style type="text/css">
+        .success {
+            color: greenyellow;
+            font-weight: bold;
+        }
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="custom-content">
+    <div class="card, col-sm-12">
+        <div class="card-header">
+            Edit <strong>User</strong>
+        </div>
+        <div class="card-body card-block">
+            <!--<span th:text="${existuser}"></span>-->
+            <form action="#" method="post" class="form-horizontal" th:object="${user}" th:action="@{/update-user/} + ${id}" enctype="multipart/form-data">
+                <div class="row form-group">
+                    <div class="col-12 col-md-12">
+                        <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
+                        <input type="hidden" th:field="*{registrationDate}" th:value="${user.registrationDate}"/>
+                        <input type="hidden" th:field="*{password}" th:value="${user.password}"/>
+                        <input type="hidden" th:field="*{enabled}" th:value="${user.enabled}"/>
+                        <input type="hidden" th:field="*{confirmationToken}" th:value="${user.confirmationToken}"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">User Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="userName" name="userName"
+                                                        placeholder="Enter User name" class="form-control"
+                                                        th:field="*{userName}" th:value="${user.userName}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Email</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="email" name="email" placeholder="Enter Email"
+                                                        class="form-control" th:field="*{email}" th:value="${user.email}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Mobile No.</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="mobile" name="mobile"
+                                                        placeholder="Enter Mobile Numnber" class="form-control"
+                                                        th:field="*{mobile}" th:value="${user.mobile}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Name</label></div>
+                    <div class="col-12 col-md-6"><input type="text" id="name" name="name" placeholder="Enter name"
+                                                        class="form-control" th:field="*{name}" th:value="${user.name}" required></div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Photo</label></div>
+                    <div class="col-12 col-md-9"><input type="file" id="file" name="file" class="form-control-file" required></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Role</label></div>
+                    <div class="col-12 col-md-6">
+                        <select data-placeholder="Select roles" class="standardSelect" th:field="*{roles}" multiple>
+                            <option th:each="tyyy : ${rolelist}" th:value="${tyyy.id}">
+                                <span th:text="${tyyy.roleName}"></span>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col col-md-3">
+                        <span th:class="err" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Update
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>

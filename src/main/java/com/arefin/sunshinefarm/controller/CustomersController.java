@@ -31,7 +31,7 @@ public class CustomersController {
     private CropsRepo cropsRepo;
 
     @Autowired
-    RoleRepo roleRepo;
+    private RoleRepo roleRepo;
 
     @Autowired
     private CropsSummaryRepo cropsSummaryRepo;
@@ -125,11 +125,11 @@ public class CustomersController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = this.userRepo.findByUserName(auth.getName());
         ModelAndView modelAndView = new ModelAndView();
-//        if(user.getRoles().equals()){
-        modelAndView.addObject("user", this.userRepo.findAll());
-//        }else {
-//            modelAndView.addObject("user", this.userRepo.findAllByUserName(user.getUserName()));
-//        }
+
+        //modelAndView.addObject("user", user);
+
+        modelAndView.addObject("userlist", this.userRepo.findAllByUserName(user.getUserName()));
+
         modelAndView.setViewName("customers/user-list");
         return modelAndView;
     }
