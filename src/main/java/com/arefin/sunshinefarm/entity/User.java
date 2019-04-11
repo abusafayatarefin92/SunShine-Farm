@@ -42,7 +42,7 @@ public class User {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date registrationDate;
 
-    private  boolean enabled;
+    private boolean enabled;
 
     @Column(nullable = false)
     private  String confirmationToken;

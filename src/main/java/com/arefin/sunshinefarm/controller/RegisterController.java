@@ -41,28 +41,76 @@ public class RegisterController {
     PasswordEncoder passwordEncoder;
 
     private static String USER_NAME = "arefinsafayat92"; // GMail user name (just the part before "@gmail.com")
-    private static String PASSWORD = ""; // GMail password
+    private static String PASSWORD = "Arefin01676819391"; // GMail password
 
+//    @GetMapping(value = "/register")
+//    public String registerView(Model model) {
+//        model.addAttribute("obj", new User());
+//        return "signup";
+//    }
     @GetMapping(value = "/register")
-    public String registerView(Model model) {
-        model.addAttribute("user", new User());
-        return "register";
+    public ModelAndView registerView(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", new User());
+        modelAndView.addObject("rolelist", roleRepo.findAll());
+        modelAndView.setViewName("sign-up");
+        return modelAndView;
     }
 
-    @PostMapping(value = "/register")
-    public String add(@Valid User user, BindingResult result, Model model, HttpServletRequest request) {
-        user.setEnabled(false);
-        Set<Role> roles = new HashSet<>();
-        roles.add(new Role(1L));
-        user.setRegistrationDate(new Date());
-        user.setRoles(roles);
-        user.setConfirmationToken(UUID.randomUUID().toString());
+//    @PostMapping(value = "/register")
+//    public String add(@Valid User user, BindingResult result, Model model, HttpServletRequest request) {
+//        if(user != null) {
+//            user.setEnabled(false);
+//            Set<Role> roles = new HashSet<>();
+//            roles.add(new Role(1L));
+//            user.setRegistrationDate(new Date());
+//            user.setRoles(roles);
+//            user.setConfirmationToken(UUID.randomUUID().toString());
+//
+//            if (result.hasErrors()) {
+//                model.addAttribute("rejectMsg", "opps, Something Wrong");
+//                return "signup";
+//            }
+//            this.userRepo.save(user);
+//        }else {
+//            model.addAttribute("nullvalue", "Null");
+//            return "signup";
+//        }
+//        //email sending
+//        String appUrl = request.getScheme() + "://" + request.getServerName() + ":" + "8008";
+//        String from = USER_NAME;
+//        String pass = PASSWORD;
+//        String[] to = {user.getEmail()}; // list of recipient email addresses
+//        String subject = "Registration Confirmation";
+//        String body = "To confirm your e-mail address, please click the link below:\n"
+//                + appUrl + "/confirm?token=" + user.getConfirmationToken();
+//        sendFromGMail(from, pass, to, subject, body);
+//        model.addAttribute("successMsg", "A confirmation e-mail has been sent to " + user.getEmail());
+//        return "signup";
+//    }
 
-        if (result.hasErrors()) {
-            model.addAttribute("rejectMsg", "opps, Something Wrong");
-            return "register";
+
+    @PostMapping(value = "/register")
+    public ModelAndView add(@Valid User user, BindingResult result, HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        if(user != null) {
+            user.setEnabled(false);
+            Set<Role> roles = new HashSet<>();
+            roles.add(new Role(1L));
+            user.setRegistrationDate(new Date());
+            user.setRoles(roles);
+            user.setConfirmationToken(UUID.randomUUID().toString());
+            if (result.hasErrors()) {
+                modelAndView.addObject("rejectMsg", "opps, Something Wrong");
+                modelAndView.setViewName("sign-up");
+                return modelAndView;
+            }
+            this.userRepo.save(user);
+        }else {
+            modelAndView.addObject("nullvalue", "Null");
+            modelAndView.setViewName("sign-up");
+            return modelAndView;
         }
-        this.userRepo.save(user);
         //email sending
         String appUrl = request.getScheme() + "://" + request.getServerName() + ":" + "8008";
         String from = USER_NAME;
@@ -72,8 +120,9 @@ public class RegisterController {
         String body = "To confirm your e-mail address, please click the link below:\n"
                 + appUrl + "/confirm?token=" + user.getConfirmationToken();
         sendFromGMail(from, pass, to, subject, body);
-        model.addAttribute("successMsg", "A confirmation e-mail has been sent to " + user.getEmail());
-        return "register";
+        modelAndView.addObject("successMsg", "A confirmation e-mail has been sent to " + user.getEmail());
+        modelAndView.setViewName("sign-up");
+        return modelAndView;
     }
 
     // Process confirmation link
@@ -90,6 +139,9 @@ public class RegisterController {
         modelAndView.setViewName("confirm");
         return modelAndView;
     }
+
+
+
 
     // Process confirmation link
     @RequestMapping(value = "/confirm", method = RequestMethod.POST)

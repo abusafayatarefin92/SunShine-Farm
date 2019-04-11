@@ -154,7 +154,7 @@ public class CustomersController {
             Files.write(path, bytes);
             user.setFileName("new-" + file.getOriginalFilename());
             user.setFileSize(file.getSize());
-            user.setFilePath("images/" + "new-" + file.getOriginalFilename());
+            user.setFilePath("/images/" + "new-" + file.getOriginalFilename());
             user.setFileExtension(file.getContentType());
             //////////////////////For Image Upload end/////////////////////
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -49,11 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .authorizeRequests()
                 .antMatchers(
-                        "/public/**", "/login", "/user-save", "/role-save", "/assets/**", "/images/**", "/vendors/**","/register", "/confirm", "/access-denied", "/success", "/layout", "/fragments/**"
+                        "/public/**", "/login", "/user-save", "/role-save", "/assets/**", "/images/**", "/vendors/**", "/register", "/confirm", "/access-denied", "/success", "/layout", "/fragments/**"
                 ).permitAll()
                 .antMatchers(
                         "/role/**", "/designation/**", "/crops/**", "/crops-summary/**", "/employees/**", "/equipment/**", "/expenses/**", "/insecticides/**", "/pesticides/**", "/sales/**", "/user/**"
-                ).hasRole("ADMIN")
+                ).hasAnyRole("ADMIN", "SUPERADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
