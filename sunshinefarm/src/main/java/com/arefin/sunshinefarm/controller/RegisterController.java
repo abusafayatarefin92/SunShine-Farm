@@ -41,7 +41,7 @@ public class RegisterController {
     PasswordEncoder passwordEncoder;
 
     private static String USER_NAME = "arefinsafayat92"; // GMail user name (just the part before "@gmail.com")
-    private static String PASSWORD = "Arefin01676819391"; // GMail password
+    private static String PASSWORD = ""; // GMail password
 
     @GetMapping(value = "/register")
     public String registerView(Model model) {
