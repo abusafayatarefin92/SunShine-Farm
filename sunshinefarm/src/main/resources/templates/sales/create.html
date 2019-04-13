@@ -28,17 +28,35 @@
             <form method="post" class="form-horizontal" th:object="${sales}" th:action="@{/sales/create}">
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Product Name</label></div>
-                    <div class="col-12 col-md-6"><input type="text" id="productName" name="productName"
-                                                        placeholder="Enter Product name" class="form-control"
-                                                        th:field="*{productName}" required></div>
+                    <!--<div class="col-12 col-md-6"><input type="text" id="productName" name="productName"-->
+                                                        <!--placeholder="Enter Product name" class="form-control"-->
+                                                        <!--th:field="*{productName}" required></div>-->
+
+                    <div class="col-12 col-md-6">
+                        <select data-placeholder="Choose a crop name" class="standardSelect" tabindex="1" th:field="*{productName}">
+                            <option th:each="tyyy : ${cropslist}" th:value="${tyyy.name}">
+                                <span th:text="${tyyy.name}"></span>
+                            </option>
+                        </select>
+                    </div>
+
                     <div class="col col-md-3">
                         <span th:class="err" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></span>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Product Code</label></div>
-                    <div class="col-12 col-md-6"><input type="text" id="productCode" name="productCode" placeholder="Enter Product Code"
-                                                        class="form-control" th:field="*{productCode}" required></div>
+                    <!--<div class="col-12 col-md-6"><input type="text" id="productCode" name="productCode" placeholder="Enter Product Code"-->
+                                                        <!--class="form-control" th:field="*{productCode}" required></div>-->
+
+                    <div class="col-12 col-md-6">
+                        <select data-placeholder="Choose a crop name" class="standardSelect" tabindex="1" th:field="*{productCode}">
+                            <option th:each="tyyy : ${cropslist}" th:value="${tyyy.productCode}">
+                                <span th:text="${tyyy.name}"></span>
+                            </option>
+                        </select>
+                    </div>
+
                     <div class="col col-md-3">
                         <span th:class="err" th:if="${#fields.hasErrors('productCode')}" th:errors="*{productCode}"></span>
                     </div>
